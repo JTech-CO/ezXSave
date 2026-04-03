@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "ezXSave",
-  "version": "1.0",
-  "description": "One-click right-click save for X (Twitter) videos",
-  "permissions": ["contextMenus", "downloads"],
+  "version": "1.2",
+  "description": "Download X videos with highest quality",
+  "permissions": ["downloads"],
   "host_permissions": ["https://x.com/*", "https://twitter.com/*"],
   "background": {
     "service_worker": "background.js"
@@ -12,6 +12,7 @@
     {
       "matches": ["https://x.com/*", "https://twitter.com/*"],
       "js": ["content.js"],
+      "css": ["style.css"],
       "run_at": "document_idle"
     }
   ]

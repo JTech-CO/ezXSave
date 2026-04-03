@@ -20,16 +20,13 @@ chrome.runtime.onStartup.addListener(createMenus);
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (!tab?.id) return;
 
-  chrome.tabs.sendMessage(tab.id, { action: 'getVideoUrl' }, (res) => {
-    if (!res) return;
-
-    if (info.menuItemId === 'open-x-video') {
-      // blob URL 대신 트윗 주소 열기 (더 안정적)
-      const urlToOpen = res.tweetUrl || res.url || tab.url;
-      chrome.tabs.create({ url: urlToOpen });
-    } 
-    else if (info.menuItemId === 'download-x-video') {
-      chrome.tabs.sendMessage(tab.id, { action: 'downloadVideo' });
-    }
-  });
+  if (info.menuItemId === 'open-x-video') {
+    chrome.tabs.sendMessage(tab.id, { action: 'getVideoUrl' }, (res) => {
+      const url = res?.tweetUrl || tab.url;
+      chrome.tabs.create({ url: url });
+    });
+  } 
+  else if (info.menuItemId === 'download-x-video') {
+    chrome.tabs.sendMessage(tab.id, { action: 'downloadVideo' });
+  }
 });

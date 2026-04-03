@@ -1,0 +1,19 @@
+.ezxsave-btn {
+  position: absolute;
+  background: #1d9bf0;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(29, 155, 240, 0.5);
+}
+
+.ezxsave-btn:hover { background: #1a8cd8; }
+.ezxsave-btn.show { display: flex; }
