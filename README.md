@@ -1,57 +1,47 @@
-# ezXSave
+# ezXSave v2
 
-> X(트위터) 동영상을 우클릭 한 번으로 새 탭 열기 & 저장하는 초경량 Chrome 확장 프로그램
+> X(트위터) 동영상을 최고 화질 MP4로 다운로드하는 Chrome 확장 프로그램
 
-## 1. 소개 (Introduction)
+## 동작 원리
 
-이 프로젝트는 X(트위터)에서 동영상을 마우스 우클릭으로 쉽게 저장하거나 새 탭에서 여는 기능을 제공하는 Chrome/Edge 확장 프로그램입니다. X 플랫폼의 기본 제한을 해결하며, **초경량** 설계와 직관적인 우클릭 메뉴로 사용자에게 빠르고 편리한 동영상 경험을 제공합니다.
+Twitter Syndication API (`cdn.syndication.twimg.com/tweet-result`)를 사용하여 트윗에 포함된 동영상의 직접 MP4 URL을 가져옵니다. 별도의 API 키가 필요 없으며, HLS(m3u8) 스트리밍을 변환할 필요 없이 직접 MP4 파일을 다운로드합니다.
 
-**주요 기능**
-- **동영상 새 탭 열기**: 우클릭 메뉴로 즉시 새 탭에서 동영상 열기
-- **동영상 저장하기**: 우클릭으로 저장 위치 선택 창과 함께 MP4 파일 다운로드
+## 주요 기능
 
-## 2. 기술 스택 (Tech Stack)
+- **Save Video 버튼**: 동영상이 있는 트윗에 자동으로 다운로드 버튼 표시
+- **우클릭 메뉴**: "Open Video in New Tab" / "Save Video (Best Quality)"
+- **최고 화질 자동 선택**: 사용 가능한 variant 중 최고 bitrate의 MP4를 선택
+- **파일명 자동 생성**: `유저명_트윗ID.mp4` 형식
 
-- **Platform**: Chrome Extension (Manifest V3)
-- **Language**: Vanilla JavaScript
-- **APIs**: chrome.contextMenus, chrome.downloads, chrome.tabs, chrome.runtime
+## 설치
 
-## 3. 설치 및 실행 (Quick Start)
+1. `chrome://extensions/` (또는 `edge://extensions/`) 열기
+2. **Developer mode** 켜기
+3. **Load unpacked** 클릭 후 이 폴더 선택
 
-**요구 사항**: Google Chrome 또는 Microsoft Edge 브라우저
+## 사용법
 
-1. **설치 (Install)**
-   ```bash
-   # GitHub에서 클론한 경우
-   git clone JTech-CO/ezXSave
-   cd ezXSave
-   ```
+1. x.com 또는 twitter.com에서 동영상이 포함된 트윗 방문
+2. 동영상 아래에 나타나는 **⬇ Save Video** 버튼 클릭
+3. 또는 동영상 위에서 **우클릭** → "Save Video (Best Quality)"
 
-   또는 직접 3개 파일(manifest.json, background.js, content.js)을 만들어 사용
+## 제한사항
 
-2. **확장 프로그램 로드**
-   - Chrome/Edge에서 `chrome://extensions/` 또는 `edge://extensions/` 열기
-   - 오른쪽 상단 **Developer mode** 켜기
-   - **Load unpacked** 클릭 후 ezXSave 폴더 선택
+- **비공개 계정 / 민감한 콘텐츠**: Syndication API가 접근하지 못할 수 있음
+- **비공식 API**: Twitter가 언제든 엔드포인트를 변경할 수 있음
+- **GIF**: animated_gif 타입도 MP4로 다운로드 가능
 
-3. **사용 (Run)**
-   - x.com 또는 twitter.com에서 동영상 위에 마우스 **우클릭**
-   - “Open Video in New Tab” 또는 “Save Video” 메뉴 선택
+## 파일 구조
 
-## 4. 폴더 구조 (Structure)
-
-```text
+```
 ezXSave/
-├── manifest.json          # 확장 프로그램 설정 및 권한
-├── background.js          # 컨텍스트 메뉴 생성 및 다운로드 처리
-├── content.js             # X 페이지에서 동영상 URL 감지
+├── manifest.json   # 확장 프로그램 설정 및 권한
+├── background.js   # Syndication API 호출 + 다운로드 처리
+├── content.js      # 트윗 ID 추출 + 버튼 주입
+├── style.css       # 버튼 스타일
 └── README.md
 ```
 
-## 5. 정보 (Info)
+## License
 
-- **License**: MIT
-- **Version**: 1.0
-```
-
----
+MIT
