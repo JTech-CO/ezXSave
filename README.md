@@ -23,7 +23,7 @@
 1. **설치 (Install)**
    ```bash
    # GitHub에서 클론한 경우
-   git clone [레포지토리 URL]
+   git clone JTech-CO/ezXSave
    cd ezXSave
    ```
 
