@@ -103,4 +103,4 @@ ezXSave/
 
 - **License**: MIT
 - **Version**: 2.0.0
-- **Privacy Policy**: [개인정보 처리방침 안내](privacy-policy.html)
+- **Privacy Policy**: [개인정보 처리방침 안내](<https://jtech-co.github.io/ezXSave/privacy-policy.html>)
