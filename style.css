@@ -1,34 +1,55 @@
-/* ezXSave v2 styles */
+/* ezXSave v3 styles */
 
-.ezxsave-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
+/* ── Bottom-left status badge ────────────────── */
+
+#ezxsave-badge {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2147483647;
+  color: #1DA1F2;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.ezxsave-btn {
-  background: #1d9bf0;
-  color: white;
-  border: none;
-  padding: 6px 14px;
+/* ── Download button overlay ─────────────────── */
+
+.ezxsave-dl-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.72);
+  color: #ffffff;
+  border: 2px solid #1DA1F2;
+  padding: 5px 14px;
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s;
   white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1.4;
 }
 
-.ezxsave-btn:hover {
-  background: #1a8cd8;
+.ezxsave-dl-btn:hover {
+  background: #1DA1F2;
+  border-color: #1DA1F2;
 }
 
-.ezxsave-btn:active {
+.ezxsave-dl-btn:active {
   background: #1579b5;
+  border-color: #1579b5;
 }
 
-.ezxsave-status {
-  font-size: 12px;
-  color: #1d9bf0;
+.ezxsave-dl-btn:disabled {
+  opacity: 0.65;
+  cursor: default;
 }
